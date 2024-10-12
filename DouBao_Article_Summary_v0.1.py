@@ -83,10 +83,10 @@ try:
     while is_disabled:
         try:
             time.sleep(1)
-            print(element_to_click.is_enabled())
+            print("发送按钮 状态： " + str(element_to_click.is_enabled()))
             is_disabled = not element_to_click.is_enabled()
         except:
-            print("except") # 状态变化的时候，element 会变化报错
+            print("except: 状态变化的时候，element 会变化报错") # 状态变化的时候，element 会变化报错
             break
 
     element_to_click = driver.find_element(By.ID, "flow-end-msg-send") # 发送按钮

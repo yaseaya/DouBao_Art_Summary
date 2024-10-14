@@ -14,7 +14,7 @@ user_profile_path = r'C:\Users\%s\AppData\Local\Google\Chrome\User Data' % usern
 print(user_profile_path)
 
 # 设置要处理的文件路径
-file_name = "20240517 上午第2节.txt"
+file_name = "20240517.txt"
 file_path = r'D:\My.Dev\DouBao\DouBao_Art_Summary\SampleTxt\%s' % file_name
 print(file_path)
 
@@ -87,8 +87,55 @@ try:
     actions = ActionChains(driver)
     actions.move_to_element(element_to_click).click().perform()
 
-    # 等待5秒
+    # 获取剪贴板内容
+    clipboard_content = pyperclip.paste()
+
+    # 打印剪贴板内容
+    print(clipboard_content)
+
+    ###########################################################
+    # 在提示词输入框中输入文本
     time.sleep(5)
+    iuput_field = driver.find_element(By.CSS_SELECTOR, "[data-testid='chat_input_input']")
+    iuput_field.send_keys("再详细点")
+
+    # 等待发送按钮变为可用状态
+    # element_to_click = driver.find_element(By.ID, "flow-end-msg-send")
+    # is_disabled = True
+    # while is_disabled:
+    #     try:
+    #         time.sleep(2)
+    #         print("发送按钮 状态2222222222222： " + str(element_to_click.is_enabled()))
+    #         is_disabled = not element_to_click.is_enabled()
+    #     except:
+    #         print("except: 状态变化的时候，element 会变化报错")
+    #         break
+
+    # 点击发送按钮
+    time.sleep(2)
+    element_to_click = driver.find_element(By.ID, "flow-end-msg-send")
+    actions = ActionChains(driver)
+    actions.move_to_element(element_to_click).click().perform()
+    print("发送按钮 再次点击")
+
+    # 等待生成完成
+    time.sleep(2)
+    generating = True
+    while generating:
+        try:
+            regenerate_button = driver.find_element(By.CSS_SELECTOR, "[data-testid='message_action_regenerate']")
+            generating = False
+        except:
+            print("except: 状态变化的时候，element 会变化报错")
+            time.sleep(5)
+
+    copy_button = driver.find_element(By.CSS_SELECTOR, "[data-testid='message_action_copy']")
+
+    # 等待5秒
+    
+    # 点击复制按钮
+    actions = ActionChains(driver)
+    actions.move_to_element(copy_button).click().perform()
 
     # 获取剪贴板内容
     clipboard_content = pyperclip.paste()
@@ -104,5 +151,5 @@ try:
         file.write(clipboard_content)
 
 finally:
-    # 脚本结束，但不关闭浏览器
-    pass
+    # 脚本结束
+    driver.quit()

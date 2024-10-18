@@ -3,7 +3,7 @@ __pycache__/
 *.pyc
 
 # 忽略虚拟环境
-.venv/
+/.venv/
 
 
 # 忽略日志文件
@@ -14,4 +14,4 @@ __pycache__/
 *.DS_Store
 
 # 忽略其他特定文件夹
-SampleTxt/
+/SampleTxt/

@@ -14,7 +14,8 @@ user_profile_path = r'C:\Users\%s\AppData\Local\Google\Chrome\User Data' % usern
 print(user_profile_path)
 
 # 设置要处理的文件路径
-file_name = "20240517.txt"
+# file_name = "20240517_AA.txt"
+file_name = "2024-09-27周五分享（季线双针探底，新的开始）.docx"
 file_path = r'D:\My.Dev\DouBao\DouBao_Art_Summary\SampleTxt\%s' % file_name
 print(file_path)
 
